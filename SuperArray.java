@@ -7,7 +7,11 @@ public class SuperArray {
   public int size() {
     return data.length;
   }
-
+  public boolean add(String element) {
+    int pos = size();
+    data[pos] = element;
+    return true;
+  }
 
 
 
