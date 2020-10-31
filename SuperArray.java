@@ -12,7 +12,9 @@ public class SuperArray {
     data[pos] = element;
     return true;
   }
-
+  public String get(int index) {
+    return data[index];
+  }
 
 
 }
