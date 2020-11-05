@@ -50,14 +50,22 @@ public class SuperArray {
     return size == 0;
   }
   public String toString() {
+    int j = 0;
     String end = "";
     end = end + "[";
-    for (int i = 0; i < size; i++) {
-      end = end + data[i] + ", ";
+    if (size == 0) {
+      return "[]";
 
     }
-    end = end + "]";
+    else {
+    for (int i = 0; i < size -  1; i++) {
+      end = end + data[i] + ", ";
+      j = i;
+    }
+
+    end = end + data[j+1] + "]";
     return end;
+  }
   }
   public boolean contains(String s) {
     for (int i = 0; i < size; i++) {
@@ -71,15 +79,15 @@ public class SuperArray {
   }
   public void clear() {
     String [] newdata;
-    newdata = new String [data.length];
+    newdata = new String [size];
     size = 0;
     data = newdata;
   }
   public void add (int index, String element) {
     String [] newdata;
-    newdata = new String [data.length + 1];
+    newdata = new String [size + 1];
     int j = 0;
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < size + 1; i++) {
       if (i == index) {
         j = j + 1;
         newdata[i] = element;
@@ -94,7 +102,7 @@ public class SuperArray {
   public String remove (int index) {
     String value = "";
     String [] newdata;
-    newdata = new String [data.length - 1];
+    newdata = new String [size - 1];
     int j = 0;
     for (int i = 0; i < size; i++) {
       if (i == index) {
@@ -119,7 +127,7 @@ public class SuperArray {
   }
   public String[] toArray() {
     String [] newdata;
-    newdata = new String[data.length-1];
+    newdata = new String[size];
     for (int i = 0; i < size; i++) {
       newdata[i] = data[i];
     }
