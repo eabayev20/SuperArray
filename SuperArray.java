@@ -84,12 +84,22 @@ public class SuperArray {
     size = 0;
     data = newdata;
   }
-  public void add(int index, String element){
-    for(int i = size; i > index;i--){
-      data[i] = data[i-1];
+  public void add(int index, String element) {
+    String [] newdata;
+    newdata = new String [size + 1];
+
+    int j = 0;
+    for (int i = 0; i < size + 1 ; i++) {
+      if (i == index) {
+        j = j + 1;
+        newdata[i] = element;
+      }
+      else {
+      newdata[i + j] = data[i];
     }
-    data[index] = element;
-    size++;
+    }
+    size = size + 1;
+    data = newdata;
   }
   public String remove (int index) {
     String value = "";
@@ -175,6 +185,39 @@ public class SuperArray {
     }
     return true;
   }
+  public static SuperArray zip(SuperArray a, SuperArray b) {
+    int a111 = 0;
+    int a1 = 0;
+    int b1 = 0;
+    SuperArray c = new SuperArray();
+    if (a.size()==b.size()) {
+      for (int i = 0; i < a.size(); i++) {
+        c.add(a.get(i));
+        c.add(b.get(i));
+      }
+    }
+    else if (a.size()>b.size()) {
+      for (a1 = 0; a1 < b.size(); a1++){
+      c.add(a.get(a1));
+      c.add(b.get(a1));
+    }
+    for (int i = a1; a1 < a.size(); a1++) {
+    c.add(a.get(a1));
+  }
+  }
+  else {
+    for (b1 = 0; b1 < a.size(); b1++){
+    c.add(a.get(b1));
+    c.add(b.get(b1));
+  }
+  for (int i = b1; b1 < b.size(); b1++) {
+  c.add(b.get(b1));
+}
+}
+return c;
+  }
+
+  
 
 
 }
