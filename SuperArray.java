@@ -186,7 +186,7 @@ public class SuperArray {
     return true;
   }
   public static SuperArray zip(SuperArray a, SuperArray b) {
-    int a111 = 0;
+
     int a1 = 0;
     int b1 = 0;
     SuperArray c = new SuperArray();
@@ -198,26 +198,26 @@ public class SuperArray {
     }
     else if (a.size()>b.size()) {
       for (a1 = 0; a1 < b.size(); a1++){
-      c.add(a.get(a1));
-      c.add(b.get(a1));
+        c.add(a.get(a1));
+        c.add(b.get(a1));
+      }
+      for (int i = a1; a1 < a.size(); a1++) {
+        c.add(a.get(a1));
+      }
     }
-    for (int i = a1; a1 < a.size(); a1++) {
-    c.add(a.get(a1));
-  }
-  }
-  else {
-    for (b1 = 0; b1 < a.size(); b1++){
-    c.add(a.get(b1));
-    c.add(b.get(b1));
-  }
-  for (int i = b1; b1 < b.size(); b1++) {
-  c.add(b.get(b1));
-}
-}
-return c;
+    else {
+      for (b1 = 0; b1 < a.size(); b1++){
+        c.add(a.get(b1));
+        c.add(b.get(b1));
+      }
+      for (int i = b1; b1 < b.size(); b1++) {
+        c.add(b.get(b1));
+      }
+    }
+    return c;
   }
 
-  
+
 
 
 }
