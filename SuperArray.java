@@ -84,22 +84,12 @@ public class SuperArray {
     size = 0;
     data = newdata;
   }
-  public void add(int index, String element) {
-    String [] newdata;
-    newdata = new String [size + 1];
-
-    int j = 0;
-    for (int i = 0; i < size + 1 ; i++) {
-      if (i == index) {
-        j = j + 1;
-        newdata[i] = element;
-      }
-      else {
-      newdata[i + j] = data[i];
+  public void add(int index, String element){
+    for(int i = size; i > index;i--){
+      data[i] = data[i-1];
     }
-    }
-    size = size + 1;
-    data = newdata;
+    data[index] = element;
+    size++;
   }
   public String remove (int index) {
     String value = "";
@@ -151,7 +141,7 @@ public class SuperArray {
     for (int i = 0; i < a.size();i++) {
       if (a.indexOf(a.get(i)) != -1 && b.indexOf(a.get(i)) != -1) {
         c.add(a.get(i));
-        
+
       }
       else {
 
@@ -159,6 +149,31 @@ public class SuperArray {
     }
     removeDuplicates(c);
     return c;
+  }
+  public int lastIndexOf(String value) {
+    int j = 0;
+    for (int i = 0; i < size; i++) {
+      if (data[i].equals(value)) {
+        j = i;
+      }
+    }
+    return j;
+  }
+  public boolean equals(SuperArray other) {
+    if (other.size()!= size) {
+      return false;
+    }
+    else {
+      for (int i = 0; i < size; i++) {
+        if (other.get(i).equals(data[i])) {
+
+        }
+        else {
+          return false;
+        }
+      }
+    }
+    return true;
   }
 
 
