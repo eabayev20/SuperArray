@@ -49,23 +49,20 @@ public class SuperArray {
   public boolean isEmpty() {
     return size == 0;
   }
-  public String toString() {
-    int j = 0;
-    String end = "";
-    end = end + "[";
-    if (size == 0) {
+  public String toString(){
+    if(size==0){
       return "[]";
-
     }
-    else {
-    for (int i = 0; i < size -  1; i++) {
-      end = end + data[i] + ", ";
-      j = i;
+    String result="[";
+    for (int i=0; i<size-1;i++){
+      if(data[i] != null){
+      result += data[i] + ", ";
     }
-
-    end = end + data[j+1] + "]";
-    return end;
+    }
+    if(data[size-1] != null){
+    result += data[size-1];
   }
+    return result + "]";
   }
   public boolean contains(String s) {
     for (int i = 0; i < size; i++) {
@@ -84,22 +81,12 @@ public class SuperArray {
     size = 0;
     data = newdata;
   }
-  public void add(int index, String element) {
-    String [] newdata;
-    newdata = new String [size + 1];
-
-    int j = 0;
-    for (int i = 0; i < size + 1 ; i++) {
-      if (i == index) {
-        j = j + 1;
-        newdata[i] = element;
-      }
-      else {
-      newdata[i + j] = data[i];
+  public void add(int index, String element){
+    for(int i = size; i > index;i--){
+      data[i] = data[i-1];
     }
-    }
-    size = size + 1;
-    data = newdata;
+    data[index] = element;
+    size++;
   }
   public String remove (int index) {
     String value = "";
@@ -127,14 +114,12 @@ public class SuperArray {
     }
     return -1;
   }
-  public String[] toArray() {
-    String [] newdata;
-    newdata = new String[size];
-    for (int i = 0; i < size; i++) {
-      newdata[i] = data[i];
+  public String[] toArray(){
+    String[] newdata = new String[size];
+    for(int i = 0; i < size; i ++){
+      newdata[i]=data[i];
     }
-    data = newdata;
-    return data;
+    return newdata;
   }
   public static void removeDuplicates(SuperArray s) {
     for (int i = 0; i < s.size();) {
