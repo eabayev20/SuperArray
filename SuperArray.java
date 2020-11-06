@@ -77,17 +77,19 @@ public class SuperArray {
     }
     return false;
   }
+
   public void clear() {
     String [] newdata;
     newdata = new String [size];
     size = 0;
     data = newdata;
   }
-  public void add (int index, String element) {
+  public void add(int index, String element) {
     String [] newdata;
     newdata = new String [size + 1];
+
     int j = 0;
-    for (int i = 0; i < size + 1; i++) {
+    for (int i = 0; i < size + 1 ; i++) {
       if (i == index) {
         j = j + 1;
         newdata[i] = element;
@@ -133,6 +135,30 @@ public class SuperArray {
     }
     data = newdata;
     return data;
+  }
+  public static void removeDuplicates(SuperArray s) {
+    for (int i = 0; i < s.size();) {
+      if (s.indexOf(s.get(i)) != i) {
+        s.remove(i);
+      }
+      else {
+        i = i + 1;
+      }
+    }
+  }
+  public static SuperArray findOverlap(SuperArray a, SuperArray b) {
+    SuperArray c = new SuperArray();
+    for (int i = 0; i < a.size();i++) {
+      if (a.indexOf(a.get(i)) != -1 && b.indexOf(a.get(i)) != -1) {
+        c.add(a.get(i));
+        
+      }
+      else {
+
+      }
+    }
+    removeDuplicates(c);
+    return c;
   }
 
 
