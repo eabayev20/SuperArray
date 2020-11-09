@@ -5,8 +5,12 @@ public class SuperArray {
     data = new String[10];
     size = 0;
   }
-  public SuperArray (int InitialCapacity) {
-    data = new String[InitialCapacity];
+  public SuperArray (int initialCapacity) {
+    if (initialCapacity < 0) {
+      throw new IllegalArgumentException("InitialCapacity" + initialCapacity + "cannot be negative" );
+
+    }
+    data = new String[initialCapacity];
     size = 0;
   }
   public int size() {
@@ -22,8 +26,8 @@ public class SuperArray {
     return true;
   }
   public String get(int index) {
-    if (index >= size || index < 0) {
-      return null;
+    if (index >= size() || index < 0) {
+      throw new IndexOutOfBoundsException("Index" + Index + "is unfortunatley out of bounds!");
     }
     else {
     return data[index];
@@ -50,16 +54,16 @@ public class SuperArray {
     return size == 0;
   }
   public String toString(){
-    if(size==0){
+    if (size==0) {
       return "[]";
     }
     String result="[";
     for (int i=0; i<size-1;i++){
-      if(data[i] != null){
+      if (data[i] != null) {
       result += data[i] + ", ";
     }
     }
-    if(data[size-1] != null){
+    if (data[size-1] != null) {
     result += data[size-1];
   }
     return result + "]";
