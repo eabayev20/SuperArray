@@ -72,9 +72,12 @@ public class SuperArray {
     return result + "]";
   }
   public boolean contains(String s) {
+    if (size == 0) {
+      return false;
+    }
     for (int i = 0; i < size; i++) {
 
-      if (data[i].equals(s)) {
+      if (data[i]!= null && data[i].equals(s)) {
         return true;
       }
 
@@ -89,8 +92,16 @@ public class SuperArray {
     data = newdata;
   }
   public void add(int index, String element){
-    if (index >= size() || index < 0) {
+    if (index > size() || index < 0) {
       throw new IndexOutOfBoundsException("Index" + index + "is unfortunatley out of bounds!");
+    }
+    if (size()==index){
+
+      add(element);
+    }
+    else {
+    if (size == data.length) {
+      resize();
     }
     for(int i = size; i > index;i--){
       data[i] = data[i-1];
@@ -98,25 +109,20 @@ public class SuperArray {
     data[index] = element;
     size++;
   }
+}
   public String remove (int index) {
-    if (index >= size() || index < 0) {
+    if (index >= size || index < 0) {
       throw new IndexOutOfBoundsException("Index" + index + "is unfortunatley out of bounds!");
     }
     String value = "";
-    String [] newdata;
-    newdata = new String [size - 1];
-    int j = 0;
-    for (int i = 0; i < size; i++) {
-      if (i == index) {
-        j = j - 1;
-        value = data[i];
+    value = value + data[index];
+    if (size > 0 ) {
+      for (int i = index; i < size()-1; i++) {
+        data[i] = data[i+1];
+
       }
-      else {
-      newdata[i + j] = data[i];
+      size = size - 1;
     }
-    }
-    size = size - 1;
-    data = newdata;
     return value;
   }
   public int indexOf(String s) {
